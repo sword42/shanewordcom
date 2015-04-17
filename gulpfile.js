@@ -20,16 +20,17 @@ var paths = {
 };
 
 gulp.task('partials', [], function() {
-  return gulp.src(Path.join(paths.partials, '**.hbs'))
+  return gulp.src(Path.join(paths.partials, '**/**.hbs'))
     .pipe($.tap(function(file) {
       var template = file.contents.toString();
       var templateName = Path.basename(file.path).replace(".hbs", "");
+//      console.log("registering partial: "+templateName);
       $.handlebars.registerPartial(templateName, template);
     }))
 });
 
 gulp.task('pages', ['partials'], function() {
-    return gulp.src(Path.join(paths.pages, '**.md'))
+    return gulp.src(Path.join(paths.pages, '**/**.md'))
         .pipe($.data(function(file){
             var content = $.frontMatter(String(file.contents));
             file.contents = new Buffer($.marked(content.body));
@@ -38,14 +39,11 @@ gulp.task('pages', ['partials'], function() {
         .pipe(es.map(function(file, cb) {
             var templateName = file.data.template || 'default.hbs';
             var templateData = String(fs.readFileSync(Path.join(paths.templates, templateName)));
-    console.log("templateData");
-    console.log(templateData);
+//            console.log("templateData for: "+templateName+" is: "+templateData);
             var template = $.handlebars.compile(templateData);
-    console.log("template");
-    console.log(template);
-            var html = template({body: String(file.contents)}, {});
-    console.log("html");
-    console.log(html);
+            file.data.body = file.contents;
+            var html = template(file.data, {});
+//            console.log("html : "+html);
             file.contents = new Buffer(html, "utf-8");
             cb(null, file);
         }))
@@ -69,7 +67,7 @@ gulp.task('clean', function() {
 });
 
 // Run BrowserSync
-gulp.task('serve', ['build'], function () {
+gulp.task('serve', ['build', 'watch'], function () {
 
   browserSync({
     notify: false,
@@ -90,13 +88,16 @@ gulp.task('serve', ['build'], function () {
       }
     }
   });
-
-  gulp.watch(paths.less, ['less']);
-  gulp.watch(paths.pages, ['pages']);
-  gulp.watch('./build/**/*.*', function(file) {
+  gulp.watch('./build/**/*', function(file) {
     console.log("reload");
-    browserSync.reload(path.relative(__dirname, file.path));
+    browserSync.reload(Path.relative(__dirname, file.path));
   });
+});
+
+gulp.task('watch', function () {
+    gulp.watch(Path.join(paths.less, '**/**.less'), ['less']);
+    gulp.watch(Path.join(paths.pages, '**/**.md'), ['pages']);
+    gulp.watch(Path.join(paths.templates, '**/**.hbs'), ['pages']);
 });
 
 gulp.task('build', ['less',  'pages'

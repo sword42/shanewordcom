@@ -2,3 +2,66 @@
 @import "vendor/bootstrap/custom_bootstrap.less";
 @import "vendor/fa/font-awesome.less";
 
+
+html{
+	overflow-x: hidden !important;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+body{
+	border: 0;
+	margin: 0;
+	padding: 0;
+	color: #333333;
+	font-size: 14px;
+	background: #fff;
+	position: relative;
+}
+
+.navbar {
+	margin-bottom: 0px;
+	padding: 15px;
+	transition: all 0.8s;
+	background-color: rgba(248, 248, 248, 0);
+	border-color: rgba(231, 231, 231, 0);
+	border-bottom: 1px solid#ccc;
+
+	a.navbar-brand {
+		text-transform: uppercase;
+		font-size: 22px;
+//FIX		color: #fff;
+		font-weight: 900;
+		border-right: 1px solid#ccc;
+		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;		
+	}
+
+	.navbar-nav > li > a {
+		text-transform: uppercase;
+//FIX		color: #FFF;
+		font-size: 13px;
+		letter-spacing: 1px;
+		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+		font-weight: 700;		
+	}
+}
+
+#splash {
+	margin-top: 80px;
+	height: 650px;
+
+	background: url('/img/mountainsunset.jpg') no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+//	background-image: url('/img/mountainsunset.jpg');
+//	background-position: 50%;
+//	background-size: 767px 650px, cover ;
+//	background-repeat: no-repeat; 
+}
+

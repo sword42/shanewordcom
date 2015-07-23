@@ -19,6 +19,8 @@ var paths = {
     content: './src/content'
 };
 
+var devMode = true;
+
 gulp.task('partials', [], function() {
   return gulp.src(Path.join(paths.partials, '**/**.hbs'))
     .pipe($.tap(function(file) {
@@ -29,11 +31,12 @@ gulp.task('partials', [], function() {
     }))
 });
 
-gulp.task('pages', ['partials'], function() {
+gulp.task('pages', ['partials', 'less'], function() {
     return gulp.src(Path.join(paths.pages, '**/**.md'))
         .pipe($.data(function(file){
             var content = $.frontMatter(String(file.contents));
-            file.contents = new Buffer($.marked(content.body));
+            file.contents = new Buffer(content.body);
+//            file.contents = new Buffer($.marked(content.body)); no markup for now
             return content.attributes;
         }))
         .pipe(es.map(function(file, cb) {
@@ -41,7 +44,8 @@ gulp.task('pages', ['partials'], function() {
             var templateData = String(fs.readFileSync(Path.join(paths.templates, templateName)));
 //            console.log("templateData for: "+templateName+" is: "+templateData);
             var template = $.handlebars.compile(templateData);
-            file.data.body = file.contents;
+            file.data.body = String(file.contents);
+            file.data.devMode = devMode;
             var html = template(file.data, {});
 //            console.log("html : "+html);
             file.contents = new Buffer(html, "utf-8");
@@ -59,6 +63,11 @@ gulp.task('less', [], function () {
     .pipe(gulp.dest(Path.join(paths.build, 'styles')));
 });
 
+gulp.task('assets', function() {
+    gulp.src(Path.join(paths.assets, '**'))
+        .pipe(gulp.dest(Path.join(paths.build)));
+});
+
 gulp.task('clean', function() {
     console.log("Clean all files in the build folder");
     $.del( Path.join( paths.build, '**'), function (err, deletedFiles) {
@@ -69,28 +78,9 @@ gulp.task('clean', function() {
 // Run BrowserSync
 gulp.task('serve', ['build', 'watch'], function () {
 
-  browserSync({
-    notify: false,
-    // Run as an https by uncommenting 'https: true'
-    // Note: this uses an unsigned certificate which on first access
-    //     will present a certificate warning in the browser.
-    // https: true,
-    server: {
-      baseDir: './build',
-      middleware: function (req, res, cb) {
-        var uri = url.parse(req.url);
-        if (uri.pathname.length > 1 &&
-          Path.extname(uri.pathname) === '' &&
-          fs.existsSync('./build' + uri.pathname + '.html')) {
-          req.url = uri.pathname + '.html' + (uri.search || '');
-        }
-        cb();
-      }
-    }
-  });
-  gulp.watch('./build/**/*', function(file) {
-    console.log("reload");
-    browserSync.reload(Path.relative(__dirname, file.path));
+  $.connect.server({
+      port: 8000,
+      root: 'build',
   });
 });
 
@@ -98,6 +88,7 @@ gulp.task('watch', function () {
     gulp.watch(Path.join(paths.less, '**/**.less'), ['less']);
     gulp.watch(Path.join(paths.pages, '**/**.md'), ['pages']);
     gulp.watch(Path.join(paths.templates, '**/**.hbs'), ['pages']);
+    gulp.watch(Path.join(paths.assets, '**'), ['assets']);
 });
 
 gulp.task('build', ['less',  'pages'

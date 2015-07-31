@@ -32,7 +32,7 @@ gulp.task('partials', [], function() {
 });
 
 gulp.task('pages', ['partials', 'less'], function() {
-    return gulp.src(Path.join(paths.pages, '**/**.md'))
+    return gulp.src(Path.join(paths.pages, '**/**.hbs'))
         .pipe($.data(function(file){
             var content = $.frontMatter(String(file.contents));
             file.contents = new Buffer(content.body);
@@ -40,12 +40,14 @@ gulp.task('pages', ['partials', 'less'], function() {
             return content.attributes;
         }))
         .pipe(es.map(function(file, cb) {
-            var templateName = file.data.template || 'default.hbs';
-            var templateData = String(fs.readFileSync(Path.join(paths.templates, templateName)));
-//            console.log("templateData for: "+templateName+" is: "+templateData);
-            var template = $.handlebars.compile(templateData);
             file.data.body = String(file.contents);
             file.data.devMode = devMode;
+
+//            var templateName = file.data.template || 'default.hbs';
+//            var templateData = String(fs.readFileSync(Path.join(paths.templates, templateName)));
+//            console.log("templateData for: "+templateName+" is: "+templateData);
+//            var template = $.handlebars.compile(templateData);
+            var template = $.handlebars.compile(file.data.body);
             var html = template(file.data, {});
 //            console.log("html : "+html);
             file.contents = new Buffer(html, "utf-8");

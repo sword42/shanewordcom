@@ -8,7 +8,42 @@ author: Shane
 {{> header}}
 <body>
 {{> navigation}}
-<section id="splash"> Splash</section>
+<div class="container-fluid">
+	<section class="intro-header row" style="background-image: url('/img/mountainsunset.jpg')">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="site-heading">
+                <h1>Some Stuff</h1>
+                <hr class="small">
+                <span class="subheading">or other non-stuff stuff</span>
+            </div>
+        </div>
+	</section>
+	<div class="row">
+		<div class="posts">
+			{{#each posts}}
+				{{#if this.published}}
+					<section>
+						<h1>{{this.title}}</h1>
+						<h4 class="postbyline">
+							<span>{{this.date}}</span>
+							by
+							<span>{{this.author}}</span>
+						</h4>
+						<p>
+						{{this.excerpt}}
+						</p>
+					</section>
+				{{/if}}
+			{{/each}}
+		</div>
+		<div class="sidebar">
+			<section id="shortabout">
+				<h4>About</h4>
+				<p>Shane enjoys building things.  When he doesn't spend enough time building things, then he ends up making up things to build. <a href="/about.html"><i class="fa fa-arrow-right"></i></a></p>
+			</section>
+		</div>
+	</div>
+</div>
 {{> scripts}}
 </body>
 </html>

@@ -1,67 +1,355 @@
 
 @import "vendor/bootstrap/custom_bootstrap.less";
-@import "vendor/fa/font-awesome.less";
 
+@import "component/mixins.less";
+@import "component/variables.less";
 
-html{
-	overflow-x: hidden !important;
+body {
+	.serif;
+	font-size: 20px;
+	color: @gray-dark;
+}
+
+// -- Typography
+
+p {
+	line-height: 1.5;
+	margin: 30px 0;
+	a {
+		text-decoration: underline;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	.sans-serif;
+	font-weight: 800;
+}
+
+a {
+	color: @gray-dark;
+	&:hover,
+	&:focus {
+		color: @brand-primary;
+	}
+}
+
+a img {
+	&:hover,
+	&:focus {
+		cursor: zoom-in;
+	}
+}
+
+blockquote {
+	color: @gray;
+	font-style: italic;
+}
+
+hr.small {
+	max-width: 100px;
+	margin: 15px auto;
+	border-width: 4px;
+	border-color: white;
+}
+
+// Navigation
+
+.navbar-custom {
+	position: absolute;
+	top: 0;
+	left: 0;
 	width: 100%;
-	height: 100%;
-	position: relative;
-	-webkit-font-smoothing: antialiased;
-	text-rendering: optimizeLegibility;
+	z-index: 3;
+	.sans-serif;
+	.navbar-brand {
+		font-weight: 800;
+	}
+	.nav {
+		li {
+			a {
+				text-transform: uppercase;
+				font-size: 12px;
+				font-weight: 800;
+				letter-spacing: 1px;
+			}
+		}
+	}
+	@media only screen and (min-width: 768px) {
+		background: transparent;
+		border-bottom: 1px solid transparent;
+		.navbar-brand {
+			color: white;
+			padding: 20px;
+			&:hover,
+			&:focus {
+				color: @white-faded;
+			}
+		}
+		.nav {
+			li {
+				a {
+					color: white;
+					padding: 20px;
+					&:hover,
+					&:focus {
+						color: @white-faded;
+					}
+				}
+			}
+		}
+	}
+	@media only screen and (min-width: 1170px) {
+		-webkit-transition: background-color 0.3s;
+		-moz-transition: background-color 0.3s;
+		transition: background-color 0.3s;
+		/* Force Hardware Acceleration in WebKit */
+		-webkit-transform: translate3d(0, 0, 0);
+		-moz-transform: translate3d(0, 0, 0);
+		-ms-transform: translate3d(0, 0, 0);
+		-o-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+		&.is-fixed {
+			/* when the user scrolls down, we hide the header right above the viewport */
+			position: fixed;
+			top: -61px;
+			background-color: fade(white, 90%);
+			border-bottom: 1px solid darken(white, 5%);
+			-webkit-transition: -webkit-transform 0.3s;
+			-moz-transition: -moz-transform 0.3s;
+			transition: transform 0.3s;
+			.navbar-brand {
+				color: @gray-dark;
+				&:hover,
+				&:focus {
+					color: @brand-primary;
+				}
+			}
+			.nav {
+				li {
+					a {
+						color: @gray-dark;
+						&:hover,
+						&:focus {
+							color: @brand-primary;
+						}
+					}
+				}
+			}
+		}
+		&.is-visible {
+			/* if the user changes the scrolling direction, we show the header */
+			-webkit-transform: translate3d(0, 100%, 0);
+			-moz-transform: translate3d(0, 100%, 0);
+			-ms-transform: translate3d(0, 100%, 0);
+			-o-transform: translate3d(0, 100%, 0);
+			transform: translate3d(0, 100%, 0);
+		}
+	}
 }
 
-body{
-	border: 0;
-	margin: 0;
-	padding: 0;
-	color: #333333;
+// Header
+
+.intro-header {
+	background-color: @gray; 
+	background: no-repeat center center; 
+	background-attachment: scroll;
+	.background-cover;
+	margin-bottom: 50px;
+	.site-heading,
+	.post-heading,
+	.page-heading {
+		padding: 100px 0 50px;
+		color: white;
+		@media only screen and (min-width: 768px) {
+			padding: 150px 0;
+		}
+	}
+	.site-heading,
+	.page-heading {
+		text-align: center;
+		h1 {
+			margin-top: 0;
+			font-size: 50px;
+		}
+		.subheading {
+			font-size: 24px;
+			line-height: 1.1;
+			display: block;
+			.sans-serif;
+			font-weight: 300;
+			margin: 10px 0 0;
+		}
+		@media only screen and (min-width: 768px) {
+			h1 {
+				font-size: 80px;
+			}
+		}
+	}
+	.post-heading {
+		h1 {
+			font-size: 35px;
+		}
+		.subheading,
+		.meta {
+			line-height: 1.1;
+			display: block;
+		}
+		.subheading {
+			.sans-serif;
+			font-size: 24px;
+			margin: 10px 0 30px;
+			font-weight: 600;
+		}
+		.meta {
+			.serif;
+			font-style: italic;
+			font-weight: 300;
+			font-size: 20px;
+			a {
+				color: white;
+			}
+		}
+		@media only screen and (min-width: 768px) {
+			h1 {
+				font-size: 55px;
+			}
+			.subheading {
+				font-size: 30px;
+			}
+		}
+	}
+}
+
+// Post Preview Pages
+
+.post-preview {
+	> a {
+		color: @gray-dark;
+		&:hover,
+		&:focus {
+			text-decoration: none;
+			color: @brand-primary;
+		}
+		> .post-title {
+			font-size: 30px;
+			margin-top: 30px;
+			margin-bottom: 10px;
+		}
+		> .post-subtitle {
+			margin: 0;
+			font-weight: 300;
+			margin-bottom: 10px;
+		}
+	}
+	> .post-meta {
+		color: @gray;
+		font-size: 18px;
+		font-style: italic;
+		margin-top: 0;
+		> a {
+			text-decoration: none;
+			color: @gray-dark;
+			&:hover,
+			&:focus {
+				color: @brand-primary;
+				text-decoration: underline;
+			}
+		}
+	}
+	@media only screen and (min-width: 768px) {
+		> a {
+			> .post-title {
+				font-size: 36px;
+			}
+		}
+	}
+}
+
+// Sections
+
+.section-heading {
+	font-size: 36px;
+	margin-top: 60px;
+	font-weight: 700;
+}
+
+.caption {
+	text-align: center;
 	font-size: 14px;
-	background: #fff;
-	position: relative;
+	padding: 10px;
+	font-style: italic;
+	margin: 0;
+	display: block;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
 }
 
-.navbar {
-	margin-bottom: 0px;
-	padding: 15px;
-	transition: all 0.8s;
-	background-color: rgba(248, 248, 248, 0);
-	border-color: rgba(231, 231, 231, 0);
-	border-bottom: 1px solid#ccc;
-
-	a.navbar-brand {
-		text-transform: uppercase;
-		font-size: 22px;
-//FIX		color: #fff;
-		font-weight: 900;
-		border-right: 1px solid#ccc;
-		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;		
+footer {
+	padding: 50px 0 65px;
+	.list-inline {
+		margin: 0;
+		padding: 0;
 	}
-
-	.navbar-nav > li > a {
-		text-transform: uppercase;
-//FIX		color: #FFF;
-		font-size: 13px;
-		letter-spacing: 1px;
-		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-		font-weight: 700;		
+	.copyright {
+		font-size: 14px;
+		text-align: center;
+		margin-bottom: 0;
 	}
 }
 
-#splash {
-	margin-top: 80px;
-	height: 650px;
 
-	background: url('/img/mountainsunset.jpg') no-repeat center center fixed; 
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
 
-//	background-image: url('/img/mountainsunset.jpg');
-//	background-position: 50%;
-//	background-size: 767px 650px, cover ;
-//	background-repeat: no-repeat; 
+// -- Highlight Color Customization
+
+::-moz-selection {
+	color: white;
+	text-shadow: none;
+	background: @brand-primary;
 }
 
+::selection {
+	color: white;
+	text-shadow: none;
+	background: @brand-primary;
+}
+
+img::selection {
+	color: white;
+	background: transparent;
+}
+
+img::-moz-selection {
+	color: white;
+	background: transparent;
+}
+
+body {
+	webkit-tap-highlight-color: @brand-primary;
+}
+
+
+.sidebar {
+    .make-sm-column(2);
+    .make-sm-column-offset(1);
+
+    section {
+    	.make-row();
+    }
+
+    #shortabout {
+		font-size: 14px;
+    }
+}
+.posts {
+    .make-sm-column(9);
+    section {
+    	.make-row();
+    }
+}

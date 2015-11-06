@@ -195,9 +195,10 @@ function setPostNextPrevious(posts) {
 
 function guaranteeDir(dir) {    
     try {
-        fs.accessSync(Path.join(dir, ''), fs.R_OK | fs.W_OK);
+ //       fs.accessSync(Path.join(dir, ''), fs.R_OK | fs.W_OK);
     } catch (err) {
-        fs.mkdirSync(Path.join(dir, ''));
+//        console.log('err '+err);
+ //       fs.mkdirSync(Path.join(dir, ''));
     }
 }
 

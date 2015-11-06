@@ -23,7 +23,7 @@ author: Shane
 			{{#each posts}}
 				{{#if this.published}}
 					<section>
-						<h1>{{this.title}}</h1>
+						<h1><a href="/posts/{{this.id}}.html">{{this.title}}</a></h1>
 						<h4 class="postbyline">
 							<span>{{this.date}}</span>
 							by
@@ -31,6 +31,7 @@ author: Shane
 						</h4>
 						<p>
 						{{this.excerpt}}
+						<a href="/posts/{{this.id}}.html">... more</a>
 						</p>
 					</section>
 				{{/if}}

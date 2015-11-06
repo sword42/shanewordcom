@@ -24,10 +24,11 @@ var paths = {
 
 var devMode = true;
 
-var siteData = {pages:[], posts:[], devMode:devMode};
+var siteData;
 
 gulp.task('handlebarshelpers', function() {
   $.handlebars.registerHelper('markdown', require('helper-markdown'));
+//  $.handlebars.registerHelper('handlebarsintl', require('handlebars-intl'));
 
 });
 
@@ -40,6 +41,7 @@ gulp.task('sitedata', ['loadsitedata'], function() {
 });
 
 gulp.task('loadsitedata', [], function() {
+    siteData = {pages:[], posts:[], devMode:devMode};
     var posts = gulp.src(Path.join(paths.posts, '**/**.hbs'))
         .pipe($.eventStream.map(function(fileData, cb) {
             var content = $.frontMatter(String(fileData.contents));
@@ -92,10 +94,13 @@ gulp.task('pages', ['partials', 'handlebarshelpers', 'sitedata'], function() {
             var pageInfo = _.findWhere(siteData.pages, {id:filePath.name});
             pageInfo = _.extend({}, file.data, pageInfo);
             var template = $.handlebars.compile(String(file.contents));
+ //           var context = _.extend({}, pageInfo, siteData);
+//            console.log(context);
             var html = template(_.extend({}, pageInfo, siteData), {});
             file.contents = new Buffer(html, "utf-8");
             cb(null, file);
         }))
+    .on("error", console.log)
         .pipe($.rename({extname: ".html"}))
         .pipe(gulp.dest(paths.build));
 });
@@ -153,7 +158,7 @@ gulp.task('watch', function () {
     gulp.watch(Path.join(paths.less, '**/**.less'), ['less']);
     gulp.watch(Path.join(paths.pages, '**/**.hbs'), ['pages']);
     gulp.watch(Path.join(paths.templates, '**/**.hbs'), ['pages', 'posts']);
-    gulp.watch(Path.join(paths.posts, '**/**.hbs'), ['posts']);
+    gulp.watch(Path.join(paths.posts, '**/**.hbs'), ['pages', 'posts']);
     gulp.watch(Path.join(paths.assets, '**'), ['assets']);
 });
 
@@ -203,8 +208,9 @@ function getExcerptByMoreTag(html) {
     var endPos = html.indexOf('<!--end excerpt-->');
     if (startPos > -1 && endPos > -1) {
         excerpt = html.slice(startPos + startString.length, endPos);
+        excerpt = '<div>'+excerpt+'</div>';
         var $ = cheerio.load(excerpt);
-        excerpt = $('*').text();
+        excerpt = $('div:root').text();
     }
     return excerpt;
 }

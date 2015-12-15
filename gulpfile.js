@@ -133,7 +133,7 @@ gulp.task('less', [], function () {
     .pipe(gulp.dest(Path.join(paths.build, 'styles')));
 });
 
-gulp.task('assets', function() {
+gulp.task('assets', [], function() {
     gulp.src(Path.join(paths.assets, '**'))
         .pipe(gulp.dest(Path.join(paths.build)));
 });

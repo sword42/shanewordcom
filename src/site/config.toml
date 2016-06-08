@@ -1,0 +1,13 @@
+baseurl = "http://localhost:1313"
+languageCode = "en-us"
+publishdir = "../../build"
+title = "Shane Word"
+uglyurls = true
+
+[permalinks]
+  post = "/post/:year/:month/:day/:filename"
+
+[params]
+  useRSS = false
+  author = "Shane Word"
+  description = "Where do we go from here?"

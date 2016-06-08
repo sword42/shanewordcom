@@ -1,0 +1,14 @@
+{{ partial "head.html" . }}
+<body>
+  {{ partial "navbar.html" . }}
+  <div class="container-fluid">
+    {{partial "introheader.html" (dict "parentvars" . "Params" (dict "headertitle" "Some Stuff" "headersubtitle" "and non-stuff stuff" "headerimage" "/img/mountainsunset-lg.jpg") ) }}
+    <div class="posts">
+      {{ partial "posts.html" . }}
+    </div>
+		{{ partial "sidebar.html" . }}
+  </div>
+  {{ partial "footer.html" .  }}
+  {{ partial "script.html" .  }}
+</body>
+</html>

@@ -5,3 +5,4 @@ dist
 app/bower_components
 build
 npm-debug.log
+/public

@@ -1,0 +1,11 @@
+{{ partial "head.html" . }}
+<body>
+	{{ partial "navbar.html" . }}
+	<div class="container-fluid">
+		{{partial "introheader.html" . }}
+		{{ .Content }}
+	</div>
+	{{ partial "footer.html" . }}
+	{{ partial "script.html" . }}
+</body>
+</html>

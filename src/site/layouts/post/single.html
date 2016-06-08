@@ -1,0 +1,15 @@
+{{ partial "head.html" . }}
+<body>
+  {{ partial "navbar.html" . }}
+  <div class="container-fluid">
+		{{partial "introheader.html" . }}
+    <h4 class="postbyline">{{ .Date.Format "Jan 2, 2006" }}</h4>
+    <div class="post-content">
+      {{ .Content }}
+      {{ template "_internal/disqus.html" . }}
+    </div>
+  </div>
+  {{ partial "footer.html" . }}
+  {{ partial "script.html" . }}
+</body>
+</html>

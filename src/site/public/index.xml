@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>/</link>
+    <description>Recent content on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 25 May 2016 15:02:19 -0700</lastBuildDate>
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>go simple soap web service client</title>
+      <link>/post/go-simple-soap-web-service-client/</link>
+      <pubDate>Wed, 25 May 2016 15:02:19 -0700</pubDate>
+      
+      <guid>/post/go-simple-soap-web-service-client/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gulptroubleshooting</title>
+      <link>/post/gulptroubleshooting/</link>
+      <pubDate>Wed, 25 May 2016 15:02:07 -0700</pubDate>
+      
+      <guid>/post/gulptroubleshooting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>work</title>
+      <link>/page/work/</link>
+      <pubDate>Wed, 25 May 2016 15:00:55 -0700</pubDate>
+      
+      <guid>/page/work/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>about</title>
+      <link>/page/about/</link>
+      <pubDate>Wed, 25 May 2016 15:00:27 -0700</pubDate>
+      
+      <guid>/page/about/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

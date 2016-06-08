@@ -1,0 +1,26 @@
+<header>
+  <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav navbar-right">
+					<li><a href="/page/about.html">About</a></li>
+          <li><a href="/page/work.html">Work</a></li>
+          <li><a href="https://twitter.com/ShaneWord">Twitter</a></li>
+          <li><a href="https://github.com/sword42">Github</a></li>
+          {{ if .Site.Params.useRSS }}
+            <li><a href="{{ .RSSlink }}" type="application/rss+xml" target="_blank"><i class="fa fa-fw fa-rss"></i></a></li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,12 @@
+<article class="post">
+    <h1><a href="{{ .Permalink  }}.html">{{ .Title }}</a></h1>
+    <h4 class="postbyline">
+      <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+      by
+      <span>{{ .Params.author }}</span>
+    </h4>
+    <p>
+    {{ .Summary }}
+    <a href="{{ .Permalink  }}.html">... more</a>
+    </p>
+</article>

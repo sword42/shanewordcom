@@ -36,4 +36,4 @@ deploy:
         bucket-url: $AWS_BUCKET_URL
         source_dir: build/
         delete-removed: true
-        opts: --acl-public --add-header=Cache-Control:max-age=2592000 --signature-v2
+        opts: --acl-public --add-header=Cache-Control:max-age=2592000

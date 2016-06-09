@@ -22,18 +22,10 @@ build:
   # http://devcenter.wercker.com/docs/steps/index.html
   steps:
     # Build Hugo site
-    - script:
-        name: ls stuff
-        code: |
-          ls -haltr /pipeline/source
-    - arjen/hugo-build:
+    - philhug/hugo-build:
         version: "0.15"
-        config: /pipeline/source/src/site/config.toml
+        basedir: /src/site
         disable_pygments: true
-    - script:
-        name: ls stuff
-        code: |
-          ls -haltr /pipeline/source
 
 deploy:
   steps:

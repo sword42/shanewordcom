@@ -5,8 +5,9 @@ title = "Go Simple Soap Web Service Client"
 aliases = ["/posts/go-simple-soap-web-service-client.html"]
 author = "Shane"
 description = "Go Simple Soap Web Service Client"
-headerimage = "/img/mountainsunset-lg.jpg"
+headerimage = "/img/photo-1463412855783-af97e375664b-lg.jpg"
 headertitle = "Go Simple Soap Web Service Client"
+darkenheader = true
 +++
 
 I was doing some work with Go calling one of our internal Soap Web Services for a project, and I noticed that Go doesn't make it very easy to get it done. There's tons of language support and examples for JSON, which makes sense, since that's what people are using now.  If you need to call a Service built in the past though, there's a good chance it'll be Soap.

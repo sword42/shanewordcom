@@ -1,4 +1,11 @@
-<section class="intro-header row" style="background-image: url('{{ $.Params.headerimage }}')">
+{{ if $.Params.darkenheader }}
+<section class="intro-header row" style="background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),
+        url('{{ $.Params.headerimage }}') no-repeat center center;
+    background-size: cover;">
+{{ else }}
+<section class="intro-header row" style="background: url('{{ $.Params.headerimage }}') no-repeat center center;
+    background-size: cover;">
+{{ end }}
   <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
     <div class="site-heading">
       <h1>{{ $.Params.headertitle }}</h1>

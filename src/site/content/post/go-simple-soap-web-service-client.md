@@ -1,5 +1,5 @@
 +++
-date = "2016-05-25T15:02:19-07:00"
+date = "2015-12-15T15:02:19-07:00"
 draft = false
 title = "Go Simple Soap Web Service Client"
 aliases = ["/posts/go-simple-soap-web-service-client.html"]

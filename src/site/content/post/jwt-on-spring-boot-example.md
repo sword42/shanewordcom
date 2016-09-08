@@ -9,7 +9,7 @@ headertitle = "JWT on Spring Boot example"
 darkenheader = true
 +++
 
-With all the recent moves to decentralized stateless services, its a good idea to look at a token implementation for your API calls. I started with a custom internal token for the API authentication (post login) on (https://www.servabusi.com), but looked to move to JWT as a more standardized implementation once it became clear that JWT provided an easy way to have an auth token that's simple, yet could be intercompatibile with other auth systems. This is an example implementation showing how you can use JWT for managing your auth needs, without having to build a complex auth infrastructure.
+With all the recent moves to decentralized stateless services, its a good idea to look at a token implementation for your API calls. I started with a custom internal token for the API authentication, post login on [https://www.servabusi.com](https://www.servabusi.com), but looked to move to JWT as a more standardized implementation once it became clear that JWT provided an easy way to have an auth token that's simple, yet could be intercompatibile with other auth systems. This is an example implementation showing how you can use JWT for managing your auth needs, without having to build a complex auth infrastructure.
 
 All code for this example is available on github.com at [https://github.com/sword42/spring-boot-jwt-example](https://github.com/sword42/spring-boot-jwt-example).
 

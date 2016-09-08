@@ -3,6 +3,7 @@ languageCode = "en-us"
 publishdir = "../../build"
 title = "Shane Word"
 uglyurls = true
+googleAnalytics = "UA-83865818-1"
 
 [permalinks]
   post = "/post/:year/:month/:day/:filename"

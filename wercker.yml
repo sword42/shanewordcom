@@ -22,8 +22,8 @@ build:
   # http://devcenter.wercker.com/docs/steps/index.html
   steps:
     # Build Hugo site
-    - philhug/hugo-build:
-        version: "0.15"
+    - arjen/hugo-build:
+        version: "0.16"
         basedir: /src/site
         disable_pygments: true
 

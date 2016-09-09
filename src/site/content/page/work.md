@@ -9,7 +9,9 @@ headersubtitle = "or some interesting things from the past"
 darkenheader = true
 
 +++
-### [Resume](/shanewordresume.pdf)
+### Resume
+* [pdf](/shanewordresume.pdf)
+* [word](/shanewordresume.docx)
 
 ## Work History  
 
